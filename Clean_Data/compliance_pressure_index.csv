@@ -1,0 +1,13 @@
+period,revenue_pressure_score,event_intensity_score,macro_amplifier_score,cpix_overall,cpix_sme,cpix_midmarket,cpix_enterprise,interpretation_band,commentary
+2/1/2025,52,30,55,45,46,44,43,Moderate,Baseline compliance pressure; no major public KRA compliance shocks captured this month.
+3/1/2025,52,30,55,45,46,44,43,Moderate,Baseline compliance pressure; steady compliance environment with no major captured events.
+4/1/2025,52,30,55,45,46,44,43,Moderate,Baseline compliance pressure; routine filing and payment activity.
+5/1/2025,52,30,55,45,46,44,43,Moderate,Baseline compliance pressure; stable month with no major captured KRA notices.
+6/1/2025,52,45,55,50,48,52,52,Moderate,Moderate pressure as customs/bonded-warehouse procedures increase documentation and setup requirements.
+7/1/2025,56,60,58,58,60,57,55,Moderate,"Higher pressure driven by Finance Act excise changes and operational adjustments (e.g., PAYE process changes)."
+8/1/2025,54,50,58,54,54,54,53,Moderate,"Moderate-to-high pressure from policy guidance affecting employment-related tax handling (e.g., gratuity treatment)."
+9/1/2025,53,30,58,46,47,45,44,Moderate,Baseline compliance pressure resumes; no major captured compliance shocks this month.
+10/1/2025,53,30,58,46,47,45,44,Moderate,Baseline compliance pressure; steady conditions with routine filing workloads.
+11/1/2025,55,55,58,56,58,56,54,Moderate,Moderate compliance pressure driven by policy updates and digital compliance adjustments.
+12/1/2025,57,65,62,61,63,60,59,Elevated,Elevated pressure due to excise and PAYE policy changes increasing filing and payment adjustments.
+1/1/2026,55,70,60,62,60,70,72,Elevated,"Enforcement-driven validation of income declarations increased reconciliation and audit exposure, especially for midmarket and enterprise taxpayers."

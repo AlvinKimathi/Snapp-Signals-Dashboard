@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Snapp Bot Debug</title>
+
+  <script src="https://unpkg.com/streamlit-component-lib/dist/index.js"></script>
+
+  <style>
+    html, body {
+      margin: 0;
+      padding: 0;
+      background: white;
+      font-family: Arial, sans-serif;
+    }
+
+    #debug-box {
+      border: 6px solid red;
+      background: yellow;
+      color: black;
+      padding: 24px;
+      font-size: 26px;
+      font-weight: bold;
+      min-height: 200px;
+    }
+  </style>
+</head>
+<body>
+  <div id="debug-box">Loading Snapp Bot component...</div>
+
+  <script>
+    function renderDebug(event) {
+      const args = (event && event.detail && event.detail.args) || {};
+      const box = document.getElementById("debug-box");
+
+      box.innerHTML = `
+        SNAPP BOT FRONTEND LOADED<br><br>
+        assistant_name: ${args.assistant_name || "missing"}<br>
+        assistant_subtitle: ${args.assistant_subtitle || "missing"}<br>
+        is_open: ${String(args.is_open)}<br>
+        messages_count: ${Array.isArray(args.messages) ? args.messages.length : 0}
+      `;
+
+      window.Streamlit.setFrameHeight(260);
+    }
+
+    window.addEventListener("load", function () {
+      const box = document.getElementById("debug-box");
+
+      if (!window.Streamlit) {
+        box.innerHTML = "STREAMLIT COMPONENT LIB NOT LOADED";
+        box.style.background = "#fecaca";
+        box.style.border = "6px solid #dc2626";
+        return;
+      }
+
+      window.Streamlit.events.addEventListener(
+        window.Streamlit.RENDER_EVENT,
+        renderDebug
+      );
+
+      window.Streamlit.setComponentReady();
+      window.Streamlit.setFrameHeight(260);
+    });
+  </script>
+</body>
+</html>

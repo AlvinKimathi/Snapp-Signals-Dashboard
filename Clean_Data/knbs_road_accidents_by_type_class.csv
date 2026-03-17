@@ -1,0 +1,23 @@
+Type,Class,2020,2021,2022,2023,2024
+Pedestrians,Killed,1383.0,1558.0,1682.0,1643.0,1801.0
+Pedestrians,Seriously Injured,1498.0,1765.0,1690.0,1833.0,2045.0
+Pedestrians,Slightly Injured,305.0,344.0,379.0,437.0,469.0
+Drivers,Killed,347.0,446.0,426.0,393.0,404.0
+Drivers,Seriously Injured,824.0,987.0,929.0,937.0,1081.0
+Drivers,Slightly Injured,582.0,672.0,721.0,769.0,760.0
+Passengers,Killed,580.0,767.0,823.0,820.0,874.0
+Passengers,Seriously Injured,2143.0,3093.0,3572.0,4101.0,4361.0
+Passengers,Slightly Injured,2947.0,3726.0,4769.0,5090.0,4733.0
+Pillion Passengers,Killed,439.0,451.0,443.0,410.0,421.0
+Pillion Passengers,Seriously Injured,1319.0,1594.0,1368.0,1435.0,1719.0
+Pillion Passengers,Slightly Injured,574.0,671.0,670.0,776.0,841.0
+Pedal Cyclists,Killed,90.0,87.0,61.0,77.0,82.0
+Pedal Cyclists,Seriously Injured,100.0,110.0,79.0,75.0,113.0
+Pedal Cyclists,Slightly Injured,21.0,19.0,19.0,33.0,32.0
+Motorcyclists,Killed,1136.0,1270.0,1255.0,1170.0,1166.0
+Motorcyclists,Seriously Injured,2142.0,2501.0,2293.0,2296.0,2618.0
+Motorcyclists,Slightly Injured,540.0,564.0,579.0,638.0,725.0
+All,Killed,3975.0,4579.0,4690.0,4513.0,4748.0
+All,Seriously Injured,8026.0,10050.0,9931.0,10677.0,11937.0
+All,Slightly Injured,4969.0,5996.0,7137.0,7743.0,7560.0
+All,Total,16970.0,20625.0,21758.0,22933.0,24245.0

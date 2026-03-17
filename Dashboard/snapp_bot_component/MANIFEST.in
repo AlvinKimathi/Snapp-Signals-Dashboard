@@ -1,0 +1,2 @@
+recursive-include snapp_bot_component/frontend/build *
+include pyproject.toml

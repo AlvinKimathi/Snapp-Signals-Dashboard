@@ -1,0 +1,15 @@
+friction_id,workflow_stage,segment,driver,severity,pain_point,evidence_event_ids
+FR-001,Filing,Midmarket|Enterprise,enforcement,5,"Cross-validation of declared income with eTIMS, WHT and customs data increases reconciliation workload and audit exposure.",EVT-2026-0001
+FR-002,Reconciliation & Audits,Midmarket|Enterprise,enforcement,5,Higher audit scrutiny and data-matching requirements increase documentation burden.,EVT-2026-0001
+FR-003,Invoicing & Records,SME,tech,4,Electronic Tax Invoicing compliance increases invoice validation complexity and risk of rejection.,EVT-2025-0004
+FR-004,Filing,SME|Midmarket,policy,3,Changes to PAYE computation require payroll system updates and recalculations.,EVT-2025-0003|EVT-2025-0009
+FR-005,Payment & Cashflow,SME|Midmarket|Enterprise,policy,4,Excise duty adjustments increase tax outflows and strain monthly liquidity.,EVT-2025-0002|EVT-2025-0008
+FR-006,Registration & Setup,Midmarket|Enterprise,policy,3,Bonded warehouse licensing procedure changes increase documentation requirements.,EVT-2025-0010
+FR-007,Payment & Cashflow,SME|Midmarket|Enterprise,policy,3,Automated payment plans increase compliance engagement and repayment monitoring.,EVT-2025-0006
+FR-008,Registration & Setup,SME|Midmarket|Enterprise,tech,3,Automation of bank guarantees in customs introduces new system processes.,EVT-2025-0005
+FR-009,Filing,SME|Midmarket|Enterprise,policy,4,"Frequent tax parameter updates (FBT, deemed interest) require periodic system adjustments.",EVT-2025-0011
+FR-010,Disputes & Penalties,Midmarket|Enterprise,enforcement,4,Increased validation raises likelihood of tax disputes and penalty exposure.,EVT-2026-0001
+FR-011,Invoicing & Records,SME|Midmarket|Enterprise,policy,4,Finance Act excise adjustments require invoice template and system reconfiguration.,EVT-2025-0008
+FR-012,Reconciliation & Audits,SME|Midmarket,policy,3,PAYE adjustments increase reconciliation complexity between payroll and tax filings.,EVT-2025-0003
+FR-013,Payment & Cashflow,SME,policy,4,Excise and VAT changes disproportionately impact SME cash flow buffers.,EVT-2025-0002|EVT-2025-0008
+FR-014,Invoicing & Records,Midmarket|Enterprise,enforcement,4,Stricter invoice validation increases risk of mismatched reporting across systems.,EVT-2026-0001
