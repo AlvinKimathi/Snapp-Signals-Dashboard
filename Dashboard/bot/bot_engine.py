@@ -1,8 +1,6 @@
 from __future__ import annotations
-
 import json
 import os
-
 from openai import OpenAI
 from .bot_prompts import SYSTEM_PROMPT
 

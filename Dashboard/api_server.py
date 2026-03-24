@@ -1,15 +1,12 @@
 from __future__ import annotations
-
 import os
 from pathlib import Path
 from typing import Any
-
 from fastapi import FastAPI, HTTPException
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.responses import FileResponse
 from fastapi.staticfiles import StaticFiles
 from pydantic import BaseModel
-
 from bot.bot_context import build_dashboard_context
 from bot.bot_engine import answer_with_snapp_bot
 from shared.snapp_data import (
@@ -22,7 +19,6 @@ from shared.snapp_data import (
 
 BASE_DIR = Path(os.environ.get("SNAPP_BASE_DIR", Path(__file__).resolve().parents[1]))
 CLEAN_DIR = Path(os.environ.get("SNAPP_CLEAN_DIR", BASE_DIR / "Clean_Data"))
-
 STATIC_DIR = Path(__file__).parent / "bot_overlay_static"
 
 app = FastAPI(title="Snapp Bot API", version="0.1.0")

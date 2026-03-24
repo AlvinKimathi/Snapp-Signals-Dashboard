@@ -1,5 +1,4 @@
 from __future__ import annotations
-
 from pathlib import Path
 import os
 import pandas as pd
@@ -15,9 +14,8 @@ def render_snapp_bot_fragment(answer_fn, dashboard_context):
     inject_snapp_bot_css()
     init_bot_state()
     render_panel(answer_fn, dashboard_context)
-# ============================================================
+
 # PATHS
-# ============================================================
 BASE_DIR = Path(os.environ.get("SNAPP_BASE_DIR", Path(__file__).resolve().parents[1]))
 CLEAN_DIR = BASE_DIR / "Clean_Data"
 ASSETS_DIR = BASE_DIR / "Dashboard" / "assets"
@@ -25,9 +23,9 @@ ASSETS_DIR = BASE_DIR / "Dashboard" / "assets"
 LOGO_PATH = ASSETS_DIR / "snapp_logo.png"
 INSIGHTS_PATH = CLEAN_DIR / "insight_registry.csv"
 CLEAN_DIR = Path(os.environ.get("SNAPP_CLEAN_DIR", BASE_DIR / "Clean_Data"))
-# ============================================================
+
 # PAGE CONFIG
-# ============================================================
+
 st.set_page_config(
     page_title="Snapp Africa | Kenya Signals Dashboard",
     layout="wide",
@@ -35,9 +33,9 @@ st.set_page_config(
 )
 px.defaults.template = "plotly_white"
 
-# ============================================================
-# CSS (CLEAN + RUNNABLE)
-# ============================================================
+
+# CSS 
+
 st.markdown(
     """
     <style>
@@ -596,9 +594,9 @@ st.markdown(
     """,
     unsafe_allow_html=True,
 )
-# ============================================================
-# HEADER (LOGO + TITLE)
-# ============================================================
+
+# HEADER 
+
 if LOGO_PATH.exists():
     b64 = base64.b64encode(LOGO_PATH.read_bytes()).decode("utf-8")
     logo_tag = f"<img src='data:image/png;base64,{b64}' alt='Snapp logo'/>"
@@ -618,9 +616,9 @@ header_html = (
     "</div>"
 )
 st.markdown(header_html, unsafe_allow_html=True)
-# ============================================================
+
 # SAFE READERS + HELPERS
-# ============================================================
+
 def _safe_read_csv(path: Path) -> pd.DataFrame:
     try:
         if path.exists():
@@ -738,9 +736,9 @@ def regional_wide_to_long(wide: pd.DataFrame) -> pd.DataFrame:
     long_df = long_df.dropna(subset=["year"])
     long_df = long_df.drop(columns=["series"])
     return long_df
-# ============================================================
+
 # CACHED LOAD + PREP
-# ============================================================
+
 @st.cache_data(show_spinner=False)
 def load_and_prepare_data(clean_dir_str: str) -> dict[str, pd.DataFrame]:
     clean_dir = Path(clean_dir_str)
@@ -764,9 +762,9 @@ def load_and_prepare_data(clean_dir_str: str) -> dict[str, pd.DataFrame]:
     kra_rev = _safe_read_csv(clean_dir / "kpi_kra_revenue.csv")
     esi = _safe_read_csv(clean_dir / "energy_stress_index.csv")
 
-    # ----------------------------
+    
     # Parse / clean date fields
-    # ----------------------------
+    
     if not esi.empty and "month_key" in esi.columns:
         esi = esi.copy()
         esi["month"] = pd.to_datetime(esi["month_key"], errors="coerce")
@@ -831,9 +829,9 @@ def load_and_prepare_data(clean_dir_str: str) -> dict[str, pd.DataFrame]:
         kra_events["event_date"] = pd.to_datetime(kra_events["event_date"], errors="coerce")
         kra_events = kra_events.dropna(subset=["event_date"]).sort_values("event_date", ascending=False)
 
-    # ----------------------------
+    
     # Precompute common long forms
-    # ----------------------------
+    
     veh_long = (
         wide_to_long(veh, "Type")
         if not veh.empty and "Type" in veh.columns
@@ -864,9 +862,9 @@ def load_and_prepare_data(clean_dir_str: str) -> dict[str, pd.DataFrame]:
         else pd.DataFrame(columns=["year", "country", "indicator", "value"])
     )
 
-    # ----------------------------
+    
     # Clean known label noise in accident summary
-    # ----------------------------
+    
     if not acc_sum_long.empty and "Metric" in acc_sum_long.columns:
         acc_sum_long = acc_sum_long.copy()
         acc_sum_long["Metric"] = acc_sum_long["Metric"].astype(str).str.strip()
@@ -902,9 +900,9 @@ def load_and_prepare_data(clean_dir_str: str) -> dict[str, pd.DataFrame]:
         "acc_class_long": acc_class_long,
         "wb_reg_long": wb_reg_long,
     }
-# ============================================================
-# LOAD DATA ONCE (CACHED)
-# ============================================================
+
+# LOAD DATA 
+
 data = load_and_prepare_data(str(CLEAN_DIR))
 
 fx = data["fx"]
@@ -967,9 +965,9 @@ if not epra.empty and "cycle_start" in epra.columns:
 latest_wb_year = int(wb_ctx["year"].max()) if (not wb_ctx.empty and wb_ctx["year"].notna().any()) else None
 latest_wb_reg_year = int(wb_reg["year"].max()) if (not wb_reg.empty and "year" in wb_reg.columns and wb_reg["year"].notna().any()) else None
 
-# ============================================================
+
 # TRANSPORT SERIES
-# ============================================================
+
 veh_long = wide_to_long(veh, "Type") if (not veh.empty and "Type" in veh.columns) else pd.DataFrame(columns=["Type", "year", "value"])
 lic_long = wide_to_long(lic, "License_Type") if (not lic.empty and "License_Type" in lic.columns) else pd.DataFrame(columns=["License_Type", "year", "value"])
 
@@ -1003,9 +1001,9 @@ if not lic_long.empty and "License_Type" in lic_long.columns:
 
 latest_year = int(veh_long["year"].max()) if (not veh_long.empty and veh_long["year"].notna().any()) else None
 
-# ============================================================
+
 # SIDEBAR
-# ============================================================
+
 with st.sidebar:
     st.markdown("### Data")
     st.caption("Downloadable Datasets.")
@@ -1039,9 +1037,9 @@ with st.sidebar:
 
     show_tables = st.toggle("Display tables", value=False)
 
-# ============================================================
+
 # TABS
-# ============================================================
+
 tab1, tab2, tab3, tab4, tab5, tab6, tab7, tab8 = st.tabs(
     [
         "Macro Conditions",
@@ -1055,9 +1053,9 @@ tab1, tab2, tab3, tab4, tab5, tab6, tab7, tab8 = st.tabs(
     ]
 )
 
-# ============================================================
+
 # TAB 1: MACRO
-# ============================================================
+
 with tab1:
     st.subheader("Key Indicators")
     st.caption("Source: CBK/KNBS.")
@@ -1149,9 +1147,9 @@ with tab1:
         st.write("CBK Rates (clean)")
         st.dataframe(rates.tail(25), use_container_width=True)
 
-# ============================================================
+
 # TAB 2: TRANSPORT + ROAD SAFETY
-# ============================================================
+
 with tab2:
     st.subheader("Transport Signals")
     st.caption("Source: KNBS Chapter 13 Tables (Registrations, Licenses & Road Safety).")
@@ -1387,9 +1385,9 @@ with tab2:
         st.write("Road accidents by type/class (13.6b)")
         st.dataframe(acc_class, use_container_width=True)
 
-# ============================================================
+
 # TAB 3: DEMAND PROXIES
-# ============================================================
+
 with tab3:
     st.subheader("Key Indicators")
     st.caption("Source: Google Trends Scrape / World Bank / EPRA.")
@@ -1530,9 +1528,9 @@ with tab3:
         st.write("EPRA pump prices (clean)")
         st.dataframe(epra.tail(25), use_container_width=True)
 
-# ============================================================
+
 # TAB 4: EAC CONTEXT
-# ============================================================
+
 with tab4:
     st.subheader("Regional Context")
     st.caption("Source: World Bank.")
@@ -1667,9 +1665,9 @@ with tab4:
                 st.write("World Bank regional context (wide)")
                 st.dataframe(wb_reg.tail(25), use_container_width=True)
 
-# ============================================================
+
 # TAB 5: COMPLIANCE / KRA
-# ============================================================
+
 with tab5:
     st.subheader("Compliance Signals (KRA)")
     st.caption("Source: KRA.")
@@ -1777,9 +1775,9 @@ with tab5:
             st.write("KRA revenue KPI (clean)")
             st.dataframe(kra_rev, use_container_width=True)
 
-# ============================================================
+
 # TAB 6: ENERGY
-# ============================================================
+
 with tab6:
     st.subheader("Energy Stress Index (ESI)")
     st.caption("Source: EPRA, World Bank, IEA")
@@ -1895,9 +1893,9 @@ with tab6:
         st.subheader("Data Lag")
         st.write(f"Latest ESI month: **{pd.to_datetime(latest['month']).date() if 'month' in esi.columns else 'NA'}**")
 
-# ============================================================
+
 # TAB 7: SIGNALS MAP + INSIGHT REGISTRY
-# ============================================================
+
 with tab7:
     st.markdown(
         """
@@ -2262,9 +2260,9 @@ with tab7:
             st.subheader("Signals Map table (monthly)")
             st.dataframe(base.tail(24), use_container_width=True)
 
-# ============================================================
+
 # TAB 8: OPPORTUNITY MAP
-# ============================================================
+
 with tab8:
     st.subheader("Snapp 2026 Opportunity Map")
 
@@ -2321,9 +2319,9 @@ with tab8:
         st.session_state["opportunity_df"] = opp.copy()
         st.session_state["top3_opportunity"] = top3
         
-# ============================================================
+
 # SNAPP BOT
-# ====================================
+
 dashboard_context = build_dashboard_context(
     latest_cpi=latest_cpi,
     latest_fx=latest_fx,
